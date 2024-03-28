@@ -17,11 +17,14 @@ export default function CenteredCard({
         <div className="flex flex-wrap w-full md:w-8/12 lg:w-5/12 xl:w-4/12 space-y-1">
           <div className="card w-full p-4 bg-base-100">
             <div className="flex flex-row justify-center space-x-2 w-full mb-2">
-              <Image
-                src={logoSrc}
-                className="h-20 w-full object-contain"
-                alt="logo"
-              />
+              <div className="h-24 w-full object-contain relative">
+                <Image
+                  src={logoSrc}
+                  className="object-contain"
+                  alt="logo"
+                  fill
+                />
+              </div>
             </div>
 
             {children}
