@@ -1,6 +1,7 @@
+import React from "react";
+
 export default function TextInput({
   type = "text",
-  name,
   placeholder,
   label,
   labelRight,

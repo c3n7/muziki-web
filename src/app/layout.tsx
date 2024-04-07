@@ -1,8 +1,9 @@
+import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ weight: "200", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Muziki Web",
@@ -16,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-base-200 text-base-content`}>
+      <body className={`${poppins.className} bg-base-200 text-base-content`}>
         {children}
       </body>
     </html>

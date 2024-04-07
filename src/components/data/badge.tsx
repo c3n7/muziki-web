@@ -1,3 +1,4 @@
+import React from "react";
 import { ThemeColors } from "@/components/utils/theming";
 
 export default function Badge({
