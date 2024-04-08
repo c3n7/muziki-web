@@ -1,6 +1,5 @@
-import Button from "@/components/action/button";
-import { TextInput } from "@/components/input";
 import { Link } from "@/components/link";
+import { SignInForm } from "./components/sign-in-form";
 
 export default function Page() {
   return (
@@ -9,14 +8,7 @@ export default function Page() {
         Sign In to Your Account
       </h1>
 
-      <form className="w-full flex flex-col space-y-1">
-        <TextInput label="Email" type="email" />
-        <TextInput label="Password" type="password" />
-
-        <div className="pt-2 w-full">
-          <Button text="Log In" type="submit" fillWidth />
-        </div>
-      </form>
+      <SignInForm />
 
       <div className="flex justify-center mt-2">
         <Link href="/auth/forgot-password">Forgot Password</Link>

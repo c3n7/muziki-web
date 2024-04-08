@@ -2,6 +2,8 @@ import React from "react";
 
 export default function TextInput({
   type = "text",
+  value,
+  onChange,
   placeholder,
   label,
   labelRight,
@@ -10,11 +12,13 @@ export default function TextInput({
   labelBottomRight,
 }: {
   type: React.InputHTMLAttributes<HTMLInputElement>["type"];
+  value?: React.InputHTMLAttributes<HTMLInputElement>["value"];
+  onChange?: React.InputHTMLAttributes<HTMLInputElement>["onChange"];
   name?: string;
   placeholder?: string;
   label?: string;
   labelRight?: string;
-  error?: string;
+  error?: string | boolean;
   labelBottom?: string;
   labelBottomRight?: string;
 }) {
@@ -28,7 +32,9 @@ export default function TextInput({
       <input
         type={type}
         placeholder={placeholder}
+        value={value}
         className="input input-bordered"
+        onChange={onChange}
       />
 
       {error && (
