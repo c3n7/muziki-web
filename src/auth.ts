@@ -1,7 +1,17 @@
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
 const API_URL: string = process.env.API_BASE_URL ?? "";
+
+export class CredentialsError extends CredentialsSignin {
+  message: string;
+  code = "credentials_error";
+
+  constructor(message: string) {
+    super();
+    this.message = message;
+  }
+}
 
 export const {
   handlers: { GET, POST },
@@ -24,7 +34,6 @@ export const {
           body,
         })
           .then(async (response) => {
-            console.log(response.status);
             const data = await response.json();
 
             if (response.ok) {
@@ -32,14 +41,17 @@ export const {
             }
 
             if (data) {
-              throw data;
+              throw new CredentialsError(data.message);
             }
 
-            throw new Error("Could not log you in");
+            throw new CredentialsError("Could not log in.");
           })
           .then((data) => data)
-          .catch(() => {
-            return null;
+          .catch((e) => {
+            if (e instanceof CredentialsError) {
+              throw e;
+            }
+            throw new CredentialsError("Something went wrong.");
           });
 
         return response;

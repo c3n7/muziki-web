@@ -6,6 +6,8 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { SignInFormValues } from "../lib/types";
 import { authenticate } from "../lib/actions";
+import { useContext } from "react";
+import { AlertsContext } from "@/components/display/alerts";
 
 const FormSchema = Yup.object().shape({
   email: Yup.string().email().required("This field is required"),
@@ -18,13 +20,21 @@ const initialValues: SignInFormValues = {
 };
 
 export function SignInForm() {
+  const alertsCtx = useContext(AlertsContext);
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={FormSchema}
       onSubmit={async (values) => {
-        authenticate(values);
-        console.log(values);
+        const response = await authenticate(values);
+
+        if (response.success) {
+          alertsCtx.addSuccess("Success");
+        } else {
+          alertsCtx.addError(response.message);
+        }
+
+        console.log(values, response);
       }}
     >
       {({ values, errors, touched, setFieldValue }) => (

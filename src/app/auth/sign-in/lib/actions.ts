@@ -1,21 +1,35 @@
 "use server";
-import { signIn } from "@/auth";
+import { CredentialsError, signIn } from "@/auth";
 import { SignInFormValues } from "./types";
-import { AuthError } from "next-auth";
+
+interface AuthenticateResponse {
+  message: string;
+  success: boolean;
+}
 
 export async function authenticate(credentials: SignInFormValues) {
   try {
-    await signIn("credentials", credentials);
+    await signIn("credentials", {
+      email: credentials.email,
+      password: credentials.password,
+      redirect: false,
+    });
   } catch (e) {
-    if (e instanceof AuthError) {
-      switch (e.type) {
-        case "CredentialsSignin":
-          return "Invalid Credentials";
-        default:
-          return "Something went wrong";
-      }
+    const errorResponse = (message: string) =>
+      ({
+        message,
+        success: false,
+      } satisfies AuthenticateResponse);
+
+    if (e instanceof CredentialsError) {
+      return errorResponse(e.message);
     }
 
-    throw e;
+    return errorResponse("Something went wrong.");
   }
+
+  return {
+    message: "Logged in successfully",
+    success: true,
+  } satisfies AuthenticateResponse;
 }
