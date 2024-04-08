@@ -4,18 +4,15 @@ import Button from "@/components/action/button";
 import { TextInput } from "@/components/input";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-
-interface FormValues {
-  email: string;
-  password: string;
-}
+import { SignInFormValues } from "../lib/types";
+import { authenticate } from "../lib/actions";
 
 const FormSchema = Yup.object().shape({
   email: Yup.string().email().required("This field is required"),
   password: Yup.string().required("This field is required"),
 });
 
-const initialValues: FormValues = {
+const initialValues: SignInFormValues = {
   email: "",
   password: "",
 };
@@ -26,6 +23,7 @@ export function SignInForm() {
       initialValues={initialValues}
       validationSchema={FormSchema}
       onSubmit={async (values) => {
+        authenticate(values);
         console.log(values);
       }}
     >
