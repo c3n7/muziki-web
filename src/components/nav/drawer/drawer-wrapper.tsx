@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import DrawerLink from "./drawer-link";
-import { IconHome } from "@tabler/icons-react";
+import { IconDisc, IconHome, IconTags, IconUsers } from "@tabler/icons-react";
 
 export default function DrawerWrapper() {
   const showDrawer: boolean = true;
@@ -14,7 +14,7 @@ export default function DrawerWrapper() {
     `}
     >
       <section className="flex flex-row gap-2 items-start w-full h-fit grow-0">
-        <span className="w-full object-contain hidden dark:block">
+        <span className="w-full hidden dark:block p-5 h-16 relative">
           <Image
             src={"/logos/vector/default-monochrome-white.svg"}
             className="object-contain"
@@ -22,7 +22,7 @@ export default function DrawerWrapper() {
             fill
           />
         </span>
-        <span className="w-full object-contain block dark:hidden">
+        <span className="w-full block dark:hidden">
           <Image
             src={"/logos/vector/default-monochrome-black.svg"}
             className="object-contain"
@@ -32,8 +32,16 @@ export default function DrawerWrapper() {
         </span>
       </section>
 
-      <section className="w-full flex flex-wrap space-y-1 text-sm mt-6 justify-start">
-        <DrawerLink text="home" href="/" icon={<IconHome size={16} />} />
+      <section className="w-full flex flex-col space-y-1 text-sm mt-6 justify-start">
+        <DrawerLink
+          text="Home"
+          href="/"
+          icon={<IconHome size={20} />}
+          isActive={true}
+        />
+        <DrawerLink text="Artists" href="/" icon={<IconUsers size={20} />} />
+        <DrawerLink text="Albums" href="/" icon={<IconDisc size={20} />} />
+        <DrawerLink text="Genres" href="/" icon={<IconTags size={20} />} />
       </section>
     </nav>
   );
