@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import DrawerLink from "./drawer-link";
 import { IconHome } from "@tabler/icons-react";
 
