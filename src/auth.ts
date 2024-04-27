@@ -22,7 +22,6 @@ export const {
   providers: [
     Credentials({
       async authorize(credentials) {
-        console.log(credentials);
         const body = JSON.stringify(credentials);
 
         const response = await fetch(`${API_URL}/auth/login`, {
