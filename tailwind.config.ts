@@ -30,7 +30,7 @@ const config: Config = {
         dark: {
           "color-scheme": "dark",
           primary: "#06ab6c",
-          secondary: "oklch(74.8% 0.26 342.55)",
+          secondary: "#ef7b45",
           accent: "oklch(74.51% 0.167 183.61)",
           neutral: "#2a323c",
           "neutral-content": "#A6ADBB",

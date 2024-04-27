@@ -1,10 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import DrawerLink from "./drawer-link";
-import { IconDisc, IconHome, IconTags, IconUsers } from "@tabler/icons-react";
+import React from "react";
 
-export default function DrawerWrapper() {
+export default function DrawerWrapper({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const showDrawer: boolean = true;
 
   return (
@@ -33,15 +36,7 @@ export default function DrawerWrapper() {
       </section>
 
       <section className="w-full flex flex-col space-y-1 text-sm mt-6 justify-start">
-        <DrawerLink
-          text="Home"
-          href="/"
-          icon={<IconHome size={20} />}
-          isActive={true}
-        />
-        <DrawerLink text="Artists" href="/" icon={<IconUsers size={20} />} />
-        <DrawerLink text="Albums" href="/" icon={<IconDisc size={20} />} />
-        <DrawerLink text="Genres" href="/" icon={<IconTags size={20} />} />
+        {children}
       </section>
     </nav>
   );
