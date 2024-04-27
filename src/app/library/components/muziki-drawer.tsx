@@ -10,8 +10,16 @@ export default function MuzikiDrawer() {
         icon={<IconHome size={20} />}
         isActive={true}
       />
-      <DrawerLink text="Artists" href="/" icon={<IconUsers size={20} />} />
-      <DrawerLink text="Albums" href="/" icon={<IconDisc size={20} />} />
+      <DrawerLink
+        text="Artists"
+        href="/library/artists"
+        icon={<IconUsers size={20} />}
+      />
+      <DrawerLink
+        text="Albums"
+        href="/library/albums"
+        icon={<IconDisc size={20} />}
+      />
       <DrawerLink text="Genres" href="/" icon={<IconTags size={20} />} />
     </DrawerWrapper>
   );
